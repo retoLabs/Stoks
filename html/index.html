@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Stoks</title>
+	<link rel="icon" href="/k1/favicon.ico">
+
+	<script type='text/javascript' src="lib/vue_2517.js"></script>
+	<script type='text/javascript' src='lib/libBase64.js'></script>
+
+<style type="text/css">
+	body { font-family: Courier, "Lucida Console", monospace }
+	#frmEdit {display: none;} 
+	table, th, td {border: 1px solid;border-collapse: collapse;}
+</style>
+	<script type='module' src='js/stoks.js'></script>
+</head>
+
+
+<body>
+	<h1>Stoks</h1>
+	Programa para definir Stocks. Empezamos con una malla simple. <br>
+	En ROWs, los productos. <br>
+	en COLs, las ubicaciones. <br>
+	<button onclick="showTodo()">Inicio</button>
+	<button onclick="creaStoks()">Nuevo Stoks</button>
+	<button onclick="editStoks()">Editar Stoks</button>
+	<button onclick="updtStoks()">Update Stoks</button>
+	<form id="lista"></form>
+		<div >
+			<form id="frmEdit">
+				<input type="text" id="tag">Tag <br>
+				<input type="text" id="id0">Id0 <br>
+				<input type="text" id="rol">Rol <br>
+				<input type="button" onclick="editAction('GRABA')" value="Graba">
+				<input type="button" onclick="editAction('BORRA')" value="Borra">
+				<input type="button" onclick="editAction('SUBE')"  value="Sube">
+				<input type="button" onclick="editAction('BAJA')"  value="Baja"><br>
+				<input type="button" onclick="editAction('+NODO')" value="+Nodo">
+				<input type="button" onclick="editAction('+HIJO')" value="+Hijo">
+				<input type="button" onclick="editAction('+ARCO')" value="+Arco"><br>
+				<input type="button" onclick="editAction('+ROW')" value="+Row">
+				<input type="button" onclick="editAction('+COL')" value="+Col">
+			</form>
+		</div>
+	<div id="show"></div>
+</body>
+</html>
