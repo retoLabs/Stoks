@@ -17,6 +17,7 @@ function montaTablaMalla(taula,editON){
 	var nrows = t.getNodosRow();
 	var ncols = t.getNodosCol();
 	var arcos = t.getArcos();
+	console.log(utils.o2s(arcos));
 	var arcIds = [];
 	arcos.map(function(arc){
 		var idArc = ''+arc.ixI+':'+arc.ixF;
@@ -45,10 +46,11 @@ function montaTablaMalla(taula,editON){
 			var tdx = utils.rEl$('td');
 			tdx.id = ''+trCount+':'+i;
 			var arcIx = arcIds.indexOf(tdx.id);
+			console.log(tdx.id,arcIx);
 			if (arcIx > -1)tdx.innerHTML= arcos[arcIx].tag;
 			if (editON){
 				tdx.onclick = function(ev){
-					utils.r$('tag').value = tdx.innerHTML || 'x';
+					utils.r$('tag').value = ev.target.innerHTML || 'x';
 					utils.r$('id0').value = ev.target.id;
 					utils.r$('rol').value = 'ARCO';
 					}
@@ -120,6 +122,14 @@ function editAction(acc){
 			if (rol == 'NODO' && id0){
 				var nodo = t.getNodoById(id0);
 				t.borraNodo(nodo);
+			}
+			else if (rol == 'ARCO' && id0){
+				console.log(tag,id0,rol);
+				var ixs = id0.split(':');
+				var ixI = parseInt(ixs[0]);
+				var ixF = parseInt(ixs[1]);
+				var arco = t.getArcoByIxs(ixI,ixF);
+				t.borraArcoSelf(arco); 
 			}
 			break;
 		case 'SUBE':
@@ -245,6 +255,10 @@ function creaStoks(){
 
 }
 
+function bajaStoks(){
+	alert('No implementado');
+}
+
 function initStoks(){
 	utils.vgk.user = {'org':'DEMO01','keo':''};
 }
@@ -256,4 +270,5 @@ window.creaStoks = creaStoks;
 window.editStoks  = editStoks;
 window.editAction = editAction;
 window.updtStoks = updtStoks;
+window.bajaStoks = bajaStoks;
 window.vgApp = vgApp;
